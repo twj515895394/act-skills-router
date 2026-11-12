@@ -1,0 +1,28 @@
+# 说明性配置：由阅读本仓库 SKILL.md 的 Agent 解释；不是可执行路由引擎。
+version: 1
+entry_skill: act-skills-router
+default_modules:
+  - acting-director
+  - performance-qa
+optional_modules:
+  emotion-director: [emotion_shift, emotional_suppression, emotional_breakdown]
+  facial-performance: [closeup, facial_expression, eye_gaze, crying, face_issue]
+  body-performance: [blocking, movement, gestures, prop_use, physical_action]
+  dialogue-acting: [spoken_dialogue, listening, multi_actor_conversation, voice_timing]
+profiles:
+  restrained_crying: [acting-director, emotion-director, facial-performance, performance-qa]
+  confrontation: [acting-director, emotion-director, body-performance, dialogue-acting, performance-qa]
+  silent_scene: [acting-director, body-performance, performance-qa]
+  action_scene: [acting-director, body-performance, performance-qa]
+  talking_avatar: [acting-director, dialogue-acting, performance-qa]
+rules:
+  locked_user_constraints_first: true
+  shared_timeline_required: true
+  no_unrequested_dialogue_rewrite: true
+  avoid_loading_all_modules: true
+  pre_generation_qa: true
+  do_not_claim_video_observation_without_evidence: true
+overrides_example:
+  # 使用者可在单次请求中指定，例如 disable: [facial-performance]
+  enable: []
+  disable: []
