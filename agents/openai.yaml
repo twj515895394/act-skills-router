@@ -1,0 +1,4 @@
+interface:
+  display_name: "Act Skills Router"
+  short_description: "AI视频表演导演：动机、情绪、面部、动作、对白及质检单入口"
+  default_prompt: "使用 $act-skills-router 分析这段剧情和分镜，按需读取内置原版参考素材，输出表演节拍、可生成提示词与QA。"

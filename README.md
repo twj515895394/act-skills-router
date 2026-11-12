@@ -1,55 +1,50 @@
-# Act Skills Router
+# act-skills-router — 单个可安装的 Codex 表演 Skill
 
-面向个人 AI 视频制作的 **1 个主 Skill + 6 个可独立调用的表演子 Skill**。无 MCP、无视频模型 API 依赖。所有产物可以直接用于剧本、分镜、Seedance/Kling/ComfyUI 等提示词准备阶段。
+**一个路由 Skill，六个包内子能力，连同它们的上游原版参考文档和部分关联脚本一起维护。** 目标是个人 AI 剧情视频表演设计，不要求 MCP、API、ComfyUI 或某指定厂商。
 
-## 能力
-
-| Skill | 负责什么 | 默认触发 |
-|---|---|---|
-| `act-skills-router` | 分析任务、选择技能、协调产物、冲突检测 | 用户请求表演设计 |
-| `acting-director` | 目标、阻碍、策略、潜台词、角色表演档案 | 所有剧情表演 |
-| `emotion-director` | 情绪因果、抵抗、触发、节拍与递进 | 有情绪变化 |
-| `facial-performance` | 面部、眼神、微表情，必要时 AU 参考 | 表情特写 |
-| `body-performance` | 姿态、重心、手势、走位及道具 | 有动作或走位 |
-| `dialogue-acting` | 台词、停顿、呼吸、聆听、对手戏 | 有对白 |
-| `performance-qa` | 指令一致性、可生成性、成片观察与修复 | 交付前/视频生成后 |
-
-## 目录
-
+## 现在的架构
 ```text
-skills/
-  act-skills-router/SKILL.md        # 主入口
-  acting-director/SKILL.md
-  emotion-director/SKILL.md
-  facial-performance/SKILL.md
-  body-performance/SKILL.md
-  dialogue-acting/SKILL.md
-  performance-qa/SKILL.md
-config/
-  routing.yaml                      # 可编辑路由策略（说明性配置，非自动执行器）
-references/
-  data-contract.md                  # 统一数据约定
-  sources-and-licenses.md           # 参考来源与许可证
-templates/
-  performance-plan.md               # 可复制产物模板
-examples/
-  confrontation.md                   # 双人冲突示例
-docs/
-  architecture.md                    # 架构、运行规则和扩展
+act-skills-router/
+├── SKILL.md                   # Codex 只识别这一个入口
+├── agents/openai.yaml
+├── modules/                   # 6 个内部子能力（不是独立 SKILL.md）
+│   ├── acting-director.md
+│   ├── emotion-director.md
+│   ├── facial-performance.md
+│   ├── body-performance.md
+│   ├── dialogue-acting.md
+│   └── performance-qa.md
+├── references/
+│   ├── router/                # 路由、契约、冲突裁决
+│   └── vendor/                # 上游原版内容/依赖/许可证/脚本
+└── assets/performance-plan.md
 ```
 
-## 使用方法
+## Codex 安装：个人全局（推荐）
+在 **PowerShell** 中执行（Windows）：
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.agents\skills" | Out-Null
+git clone https://github.com/twj515895394/act-skills-router.git "$HOME\.agents\skills\act-skills-router"
+```
+若安装目录已经存在，用 `git -C "$HOME\.agents\skills\act-skills-router" pull --ff-only` 升级。
 
-将整个仓库放在 Agent 能读取的工作空间，并按客户端的标准 Skill 发现机制安装 `skills/` 下的技能。**不能假设客户端会因为仓库内存在嵌套目录而自动发现所有 Skill**；如使用 Codex，可将每个子目录链接/复制到其 Skills 搜索目录。单独安装主 Skill 时，应把本仓库保持在可访问的相对路径，否则它无法读取子 Skill。
+Linux/macOS：
+```bash
+mkdir -p ~/.agents/skills
+git clone https://github.com/twj515895394/act-skills-router.git ~/.agents/skills/act-skills-router
+```
+升级：`git -C ~/.agents/skills/act-skills-router pull --ff-only`。
 
-对支持仓库内 Skill 发现的客户端，直接调用 `act-skills-router`；否则先让 Agent 读取 `skills/act-skills-router/SKILL.md`。
+确保文件路径为 `~/.agents/skills/act-skills-router/SKILL.md`，**不能多套一层目录**。在 Codex CLI 输入 `/skills`，或输入 `$act-skills-router` 点名调用。必要时重启 Codex。
 
-示例任务：
-- “用 act-skills-router 设计这段 12 秒冲突戏的表演，输出每 2 秒的情绪和动作。”
-- “只使用 facial-performance，优化这段克制哭戏的面部表演。”
-- “用 dialogue-acting + performance-qa，检查这段双人对白。”
+在 Codex 中也可以请求内置 `$skill-installer` 从 GitHub 仓库安装本 Skill，但具体实现会随 Codex 版本变化，手动 clone 的路径最直观。
 
-## 重要边界
-- 主 Skill 的路由为 **Agent 根据文档执行的逻辑**；`config/routing.yaml` 是人可读策略，不是已经实现的自动运行时代码。
-- 不修改原台词、不伪造视频生成结果；长镜头复杂动作应拆段；FACS AU 是描述性提示，不代表生成模型可精确执行。
-- 参考项目并非被作为源码原样打包；这里是新的统一实现。详见 `references/sources-and-licenses.md`。
+## 也可安装到单个项目
+把整个 `act-skills-router` 目录置于该项目 `.agents/skills/act-skills-router/`，不要仅复制 `SKILL.md`，否则引用的 modules、references 和脚本会缺失。
+
+## 测试
+输入：“`$act-skills-router` 这段剧情中 A 在 0–3 秒怀疑 B，3–6 秒听到隐瞒的证据，6–10 秒试图保持冷静。设计克制表演，优先加载 Acting/Emotion/Facial，保留原台词并做生成前质检。”
+核实：只出现一个可选 Skill；能读取包内 vendor 文档；情绪不会在 3 秒之前提前响应；QA 不声称见过视频。
+
+## 开发与来源
+上次的 7 个平铺 `skills/*/SKILL.md` 已由这一单入口结构取代。包内模块用于路由，原始资料的版权和许可证单独保留，详情见 `references/vendor/README.md`。现阶段仍属于“Agent 按文档执行的路由”，没有自动运行时管理或对视频效果的实测承诺。
