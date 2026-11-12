@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "description": "Curated upstream snapshots bundled for single installable acting router. Update with scripts/sync_upstreams.py; MIT licenses retained.",
+  "sources": {
+    "higgsfield": "OSideMedia/higgsfield-ai-prompt-skill",
+    "act-skill": "yuyolin/act-skill",
+    "performance-direction": "calesthio/generative-media-skills",
+    "dialogue": "nolanx-ai/nolanx.ai",
+    "omniailab": "tomatoparkdao/omniailab-ai-director",
+    "acting-system": "zlbigger/story-video-director"
+  },
+  "items": [
+    {
+      "source": "act-skill",
+      "path": "LICENSE",
+      "size_at_import": 1064
+    },
+    {
+      "source": "act-skill",
+      "path": "knowledge-base/情绪/情绪表演知识库-v1.md",
+      "size_at_import": 13348
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/SKILL.md",
+      "size_at_import": 7767
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/references/dialogue-camera.md",
+      "size_at_import": 2205
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/references/emotion-retrieval.md",
+      "size_at_import": 1639
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/references/facs-action-units.md",
+      "size_at_import": 1376
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/references/model-adapters.md",
+      "size_at_import": 2268
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/scripts/search_emotion_library.py",
+      "size_at_import": 5659
+    },
+    {
+      "source": "act-skill",
+      "path": "skills/direct-ai-actor-performance/scripts/validate_timeline.py",
+      "size_at_import": 3001
+    },
+    {
+      "source": "acting-system",
+      "path": "LICENSE",
+      "size_at_import": 1066
+    },
+    {
+      "source": "acting-system",
+      "path": "reference-materials/ACTING SKILL.md",
+      "size_at_import": 25608
+    },
+    {
+      "source": "dialogue",
+      "path": "LICENSE",
+      "size_at_import": 1063
+    },
+    {
+      "source": "dialogue",
+      "path": "skills/dialogue-performance-blocking/SKILL.md",
+      "size_at_import": 1993
+    },
+    {
+      "source": "higgsfield",
+      "path": "LICENSE",
+      "size_at_import": 1069
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-acting/SKILL.md",
+      "size_at_import": 40993
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-audio/SKILL.md",
+      "size_at_import": 46358
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-character-design/SKILL.md",
+      "size_at_import": 26041
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-facs/SKILL.md",
+      "size_at_import": 27393
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-gpt-image-2/SKILL.md",
+      "size_at_import": 27879
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-prompt/SKILL.md",
+      "size_at_import": 42594
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-scene-engine/SKILL.md",
+      "size_at_import": 12007
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance-2-5/SKILL.md",
+      "size_at_import": 46557
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance-2-5/VFX-PIPELINE.md",
+      "size_at_import": 33799
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance/ENGINE-RULES.md",
+      "size_at_import": 5711
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance/FAILURE-MODES.md",
+      "size_at_import": 31734
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance/HELL-GRIND.md",
+      "size_at_import": 34478
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-seedance/SKILL.md",
+      "size_at_import": 105815
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/higgsfield-soul/SKILL.md",
+      "size_at_import": 56318
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/shared/house-rulings.md",
+      "size_at_import": 31836
+    },
+    {
+      "source": "higgsfield",
+      "path": "skills/shared/provenance.md",
+      "size_at_import": 7237
+    },
+    {
+      "source": "higgsfield",
+      "path": "templates/seedance/facs-expression-beats.md",
+      "size_at_import": 3150
+    },
+    {
+      "source": "higgsfield",
+      "path": "vocab.md",
+      "size_at_import": 37690
+    },
+    {
+      "source": "omniailab",
+      "path": "LICENSE",
+      "size_at_import": 1121
+    },
+    {
+      "source": "omniailab",
+      "path": "references/ACTING SKILL.md",
+      "size_at_import": 34463
+    },
+    {
+      "source": "omniailab",
+      "path": "references/EMOTION SKILL.md",
+      "size_at_import": 10852
+    },
+    {
+      "source": "omniailab",
+      "path": "references/emotion_curve.md",
+      "size_at_import": 3491
+    },
+    {
+      "source": "omniailab",
+      "path": "references/film-art/03-acting-direction.md",
+      "size_at_import": 17046
+    },
+    {
+      "source": "omniailab",
+      "path": "references/generation-guardrails.md",
+      "size_at_import": 6382
+    },
+    {
+      "source": "omniailab",
+      "path": "references/performance-palette.md",
+      "size_at_import": 5091
+    },
+    {
+      "source": "omniailab",
+      "path": "references/seedance-production.md",
+      "size_at_import": 4764
+    },
+    {
+      "source": "omniailab",
+      "path": "references/shot-emotion-engine.md",
+      "size_at_import": 6237
+    },
+    {
+      "source": "performance-direction",
+      "path": "LICENSE",
+      "size_at_import": 1093
+    },
+    {
+      "source": "performance-direction",
+      "path": "skills/production/creative-direction/performance-direction/EVAL.md",
+      "size_at_import": 9454
+    },
+    {
+      "source": "performance-direction",
+      "path": "skills/production/creative-direction/performance-direction/SKILL.md",
+      "size_at_import": 22685
+    }
+  ]
+}
